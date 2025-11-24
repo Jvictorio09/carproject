@@ -25,7 +25,17 @@ SECRET_KEY = 'django-insecure-)-fmg%zxl64yn+c4#+hge)&a(7yb2@-(58zc5+v+4q#h84f&3x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'carproject-production-907d.up.railway.app',
+    'localhost',
+    '127.0.0.1',
+]
+# CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    'https://carproject-production-907d.up.railway.app',
+    'http://localhost',
+    'http://127.0.0.1',
+]
 
 
 # Application definition
