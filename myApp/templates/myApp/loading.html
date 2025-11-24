@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading - Premium Car Rentals</title>
+    
+    <!-- Prevent caching of loading page -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myApp/css/style.css' %}">
+    
+    <style>
+        .loading-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-primary);
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-page.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            background: rgba(26, 26, 26, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .loading-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logoPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+            }
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(212, 175, 55, 0.2);
+            border-top-color: var(--accent-gold);
+            border-right-color: var(--accent-cyan);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background-color: rgba(212, 175, 55, 0.2);
+            border-radius: 2px;
+            margin: 1rem auto 0;
+            overflow: hidden;
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-cyan));
+            border-radius: 2px;
+            width: 0%;
+            animation: progressLoad 2s ease-in-out forwards;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes progressLoad {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        .loading-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .loading-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .loading-stat i {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        .loading-stat:nth-child(2) i {
+            animation-delay: 0.2s;
+        }
+
+        .loading-stat:nth-child(3) i {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .loading-stat strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Moving Car Animation */
+        .moving-car-container {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            overflow: hidden;
+            z-index: 0;
+            transform: translateY(-50%);
+            margin-top: 0;
+            pointer-events: none;
+        }
+
+        .moving-car {
+            position: absolute;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            animation: driveCar 4s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+            transform: scaleX(1);
+            opacity: 0.8;
+        }
+
+        .moving-car::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.3) 20%, 
+                rgba(212, 175, 55, 0.5) 50%, 
+                rgba(212, 175, 55, 0.3) 80%, 
+                transparent 100%);
+            transform: translateY(-50%);
+            animation: roadLine 3s linear infinite;
+        }
+
+        @keyframes driveCar {
+            0% {
+                left: -100px;
+                transform: scaleX(1) translateY(0);
+            }
+            25% {
+                transform: scaleX(1) translateY(-5px);
+            }
+            50% {
+                transform: scaleX(1) translateY(0);
+            }
+            75% {
+                transform: scaleX(1) translateY(-5px);
+            }
+            100% {
+                left: calc(100% + 100px);
+                transform: scaleX(1) translateY(0);
+            }
+        }
+
+        @keyframes roadLine {
+            0% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        .road-track {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.2) 10%, 
+                rgba(212, 175, 55, 0.4) 50%, 
+                rgba(212, 175, 55, 0.2) 90%, 
+                transparent 100%);
+            animation: roadPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes roadPulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scaleX(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scaleX(1.05);
+            }
+        }
+
+        .car-trail {
+            position: absolute;
+            width: 150px;
+            height: 30px;
+            background: radial-gradient(ellipse, 
+                rgba(212, 175, 55, 0.2) 0%, 
+                rgba(212, 175, 55, 0.1) 30%, 
+                transparent 70%);
+            filter: blur(10px);
+            animation: driveCar 3s linear infinite;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .moving-car {
+                font-size: 2rem;
+            }
+
+            .moving-car-container {
+                height: 60px;
+            }
+
+            .loading-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loading-logo {
+                font-size: 2rem;
+            }
+
+            .loading-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background (Same as main site) -->
+    <div class="animated-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="gradient-orb orb-4"></div>
+        <div class="gradient-orb orb-5"></div>
+        <div class="glow-overlay"></div>
+        <div class="particles-container">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- Loading Page Content -->
+    <div class="loading-page" id="loadingPage">
+        <div class="loading-content">
+            <div class="loading-logo">PremiumRentals</div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading your premium experience...</div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+            <div class="loading-stats">
+                <div class="loading-stat">
+                    <i class="fas fa-car"></i>
+                    <strong>Premium Fleet</strong>
+                    <span>Ready</span>
+                </div>
+                <div class="loading-stat">
+                    <i class="fas fa-headset"></i>
+                    <strong>24/7 Support</strong>
+                    <span>Online</span>
+                </div>
+                <div class="loading-stat">
+                    <i class="fas fa-shield-alt"></i>
+                    <strong>Secure Booking</strong>
+                    <span>Protected</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Moving Car Animation -->
+        <div class="moving-car-container">
+            <div class="road-track"></div>
+            <div class="car-trail"></div>
+            <div class="moving-car">
+                <i class="fas fa-car-side"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Prevent page from loading until loading screen is done
+        let loadingComplete = false;
+        let minimumLoadTime = 3000; // Minimum 3 seconds
+        let startTime = Date.now();
+        let resourcesLoaded = false;
+        let progressComplete = false;
+        
+        // Mark that loading has started
+        sessionStorage.setItem('loadingStarted', 'true');
+        sessionStorage.removeItem('loadingComplete');
+        
+        // Function to check if all conditions are met
+        function checkLoadingComplete() {
+            if (loadingComplete) return;
+            
+            const elapsedTime = Date.now() - startTime;
+            const timeElapsed = elapsedTime >= minimumLoadTime;
+            
+            // Only complete if all conditions are met
+            if (resourcesLoaded && progressComplete && timeElapsed) {
+                completeLoading();
+            }
+        }
+        
+        // Function to complete loading
+        function completeLoading() {
+            if (loadingComplete) return;
+            loadingComplete = true;
+            
+            // Mark loading as complete in session storage
+            sessionStorage.setItem('loadingComplete', 'true');
+            sessionStorage.setItem('hasVisited', 'true');
+            
+            const loadingPage = document.getElementById('loadingPage');
+            if (loadingPage) {
+                loadingPage.classList.add('hidden');
+                
+                // Redirect to home page after fade out
+                setTimeout(() => {
+                    window.location.replace('/');
+                }, 500);
+            }
+        }
+        
+        // Wait for all resources to load
+        if (document.readyState === 'complete') {
+            resourcesLoaded = true;
+            checkLoadingComplete();
+        } else {
+            window.addEventListener('load', () => {
+                resourcesLoaded = true;
+                checkLoadingComplete();
+            });
+        }
+        
+        // Wait for progress bar to complete (2 seconds)
+        setTimeout(() => {
+            progressComplete = true;
+            checkLoadingComplete();
+        }, 2000);
+        
+        // Ensure minimum time has passed
+        setTimeout(() => {
+            checkLoadingComplete();
+        }, minimumLoadTime);
+        
+        // Fallback: ensure redirect happens after maximum time (5 seconds)
+        setTimeout(() => {
+            if (!loadingComplete) {
+                completeLoading();
+            }
+        }, 5000);
+        
+        // Prevent navigation away from loading page
+        window.addEventListener('beforeunload', (e) => {
+            if (!loadingComplete) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+        
+        // Block any attempts to navigate away
+        window.addEventListener('popstate', (e) => {
+            if (!loadingComplete) {
+                e.preventDefault();
+                history.pushState(null, null, window.location.href);
+            }
+        });
+    </script>
+</body>
+</html>
+

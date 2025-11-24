@@ -1,0 +1,682 @@
+{% extends 'myApp/base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-label">
+                    <span>Premium Car Rentals • Airport & City Pickup</span>
+                </div>
+                <h1 class="hero-title" data-translate="hero.title">Your car is ready before you land.</h1>
+                <p class="hero-subtitle" data-translate="hero.subtitle">Book from a curated fleet of sedans, SUVs, and luxury cars in minutes — transparent pricing, no surprise fees.</p>
+                <div class="trust-row">
+                    <span><i class="fas fa-star"></i> <span data-translate="hero.rated">4.9 ★ Rated by 1,200+ travelers</span></span>
+                    <span><i class="fas fa-map-marker-alt"></i> <span data-translate="hero.cities">Serving 10+ cities</span></span>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800" alt="Luxury car">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Booking Card -->
+        <div class="booking-card">
+            <div class="booking-tabs">
+                <button class="tab active" data-translate="booking.roundtrip">Round Trip</button>
+                <button class="tab" data-translate="booking.oneway">One Way</button>
+                <button class="tab" data-translate="booking.withdriver">With Driver</button>
+            </div>
+            <form class="booking-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-location-dot"></i> <span data-translate="booking.pickup">Pickup Location</span></label>
+                        <input type="text" data-translate="booking.pickup" placeholder="Enter pickup location">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-location-dot"></i> <span data-translate="booking.dropoff">Drop-off Location</span></label>
+                        <input type="text" data-translate="booking.dropoff" placeholder="Enter drop-off location">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> <span data-translate="booking.pickupdate">Pickup Date & Time</span></label>
+                        <input type="datetime-local">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> <span data-translate="booking.returndate">Return Date & Time</span></label>
+                        <input type="datetime-local">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-translate="booking.cartype">Car Type</label>
+                        <select>
+                            <option>Economy</option>
+                            <option>SUV</option>
+                            <option>Luxury</option>
+                            <option>Van</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox"> <span data-translate="booking.returnsame">Return to same location</span>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-search" data-translate="booking.search">Search Cars</button>
+                <p class="form-reassurance" data-translate="booking.nopayment">No payment required to reserve • Free cancellation up to 24 hours</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Key Benefits Strip -->
+<section class="benefits-strip">
+    <div class="container">
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-receipt"></i>
+                <h3>Transparent Pricing</h3>
+                <p>No hidden airport or cleaning fees. See the full price before you book.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-car-side"></i>
+                <h3>New & Well-Maintained Fleet</h3>
+                <p>Average car age: under 3 years. Regular servicing and detailing.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-location-arrow"></i>
+                <h3>Flexible Pickup & Drop-off</h3>
+                <p>Airport, hotel, or office delivery options.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-headset"></i>
+                <h3>24/7 Support</h3>
+                <p>Real humans available around the clock.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Fleet Section -->
+<section class="featured-fleet" id="fleet">
+    <div class="container">
+        <h2 class="section-title">Choose the ride that fits your journey.</h2>
+        <div class="fleet-categories">
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" alt="Economy car">
+                </div>
+                <h3>Economy & Compact</h3>
+                <p class="price-hint">Starting at $45/day</p>
+                <div class="category-tags">
+                    <span class="tag">Fuel-efficient</span>
+                    <span class="tag">Best for city trips</span>
+                    <span class="tag">Seats: 4-5</span>
+                </div>
+                <a href="#" class="category-link">View all cars in this category →</a>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600" alt="SUV">
+                </div>
+                <h3>Family & SUVs</h3>
+                <p class="price-hint">Starting at $75/day</p>
+                <div class="category-tags">
+                    <span class="tag">Spacious</span>
+                    <span class="tag">Perfect for families</span>
+                    <span class="tag">Seats: 5-7</span>
+                </div>
+                <a href="#" class="category-link">View all cars in this category →</a>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600" alt="Luxury car">
+                </div>
+                <h3>Luxury & Executive</h3>
+                <p class="price-hint">Starting at $150/day</p>
+                <div class="category-tags">
+                    <span class="tag">Premium comfort</span>
+                    <span class="tag">Business travel</span>
+                    <span class="tag">Seats: 4-5</span>
+                </div>
+                <a href="#" class="category-link">View all cars in this category →</a>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600" alt="Van">
+                </div>
+                <h3>Vans & Group Travel</h3>
+                <p class="price-hint">Starting at $95/day</p>
+                <div class="category-tags">
+                    <span class="tag">Large capacity</span>
+                    <span class="tag">Group trips</span>
+                    <span class="tag">Seats: 8-12</span>
+                </div>
+                <a href="#" class="category-link">View all cars in this category →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fleet Explorer Section -->
+<section class="fleet-explorer">
+    <div class="container">
+        <h2 class="section-title">Explore our fleet.</h2>
+        <div class="filter-bar">
+            <div class="filter-group">
+                <i class="fas fa-filter"></i>
+                <select>
+                    <option>All Car Types</option>
+                    <option>Economy</option>
+                    <option>SUV</option>
+                    <option>Luxury</option>
+                    <option>Van</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <i class="fas fa-cog"></i>
+                <select>
+                    <option>All Transmissions</option>
+                    <option>Automatic</option>
+                    <option>Manual</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <i class="fas fa-users"></i>
+                <select>
+                    <option>All Seats</option>
+                    <option>2-4</option>
+                    <option>5</option>
+                    <option>6-7</option>
+                    <option>8+</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <i class="fas fa-dollar-sign"></i>
+                <select>
+                    <option>All Prices</option>
+                    <option>Under $50/day</option>
+                    <option>$50-$100/day</option>
+                    <option>$100-$200/day</option>
+                    <option>$200+/day</option>
+                </select>
+            </div>
+        </div>
+        <div class="car-grid">
+            <div class="car-card">
+                <div class="car-image">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400" alt="Toyota Corolla">
+                </div>
+                <div class="car-badges">
+                    <span class="badge">Automatic</span>
+                    <span class="badge">Seats 5</span>
+                    <span class="badge">Unlimited miles</span>
+                </div>
+                <h3>Toyota Corolla 2023</h3>
+                <div class="car-features">
+                    <i class="fas fa-snowflake" title="AC"></i>
+                    <i class="fas fa-suitcase" title="Luggage"></i>
+                    <i class="fas fa-music" title="Bluetooth"></i>
+                </div>
+                <div class="car-price">
+                    <span class="price">$48/day</span>
+                    <span class="price-note">Total for 3 days: $144 (incl. taxes)</span>
+                </div>
+                <button class="btn-select">Select</button>
+            </div>
+            <div class="car-card">
+                <div class="car-image">
+                    <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400" alt="Honda CR-V">
+                </div>
+                <div class="car-badges">
+                    <span class="badge">Automatic</span>
+                    <span class="badge">Seats 7</span>
+                    <span class="badge">300km/day</span>
+                </div>
+                <h3>Honda CR-V 2023</h3>
+                <div class="car-features">
+                    <i class="fas fa-snowflake" title="AC"></i>
+                    <i class="fas fa-suitcase" title="Luggage"></i>
+                    <i class="fas fa-music" title="Bluetooth"></i>
+                </div>
+                <div class="car-price">
+                    <span class="price">$78/day</span>
+                    <span class="price-note">Total for 3 days: $234 (incl. taxes)</span>
+                </div>
+                <button class="btn-select">Select</button>
+            </div>
+            <div class="car-card">
+                <div class="car-image">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400" alt="BMW 5 Series">
+                </div>
+                <div class="car-badges">
+                    <span class="badge">Automatic</span>
+                    <span class="badge">Seats 5</span>
+                    <span class="badge">Unlimited miles</span>
+                </div>
+                <h3>BMW 5 Series 2023</h3>
+                <div class="car-features">
+                    <i class="fas fa-snowflake" title="AC"></i>
+                    <i class="fas fa-suitcase" title="Luggage"></i>
+                    <i class="fas fa-music" title="Bluetooth"></i>
+                </div>
+                <div class="car-price">
+                    <span class="price">$165/day</span>
+                    <span class="price-note">Total for 3 days: $495 (incl. taxes)</span>
+                </div>
+                <button class="btn-select">Select</button>
+            </div>
+            <div class="car-card">
+                <div class="car-image">
+                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400" alt="Mercedes Sprinter">
+                </div>
+                <div class="car-badges">
+                    <span class="badge">Automatic</span>
+                    <span class="badge">Seats 12</span>
+                    <span class="badge">300km/day</span>
+                </div>
+                <h3>Mercedes Sprinter 2023</h3>
+                <div class="car-features">
+                    <i class="fas fa-snowflake" title="AC"></i>
+                    <i class="fas fa-suitcase" title="Luggage"></i>
+                    <i class="fas fa-music" title="Bluetooth"></i>
+                </div>
+                <div class="car-price">
+                    <span class="price">$98/day</span>
+                    <span class="price-note">Total for 3 days: $294 (incl. taxes)</span>
+                </div>
+                <button class="btn-select">Select</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works">
+    <div class="container">
+        <h2 class="section-title">Renting a car should be this simple.</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <i class="fas fa-search"></i>
+                <h3>Search & Compare</h3>
+                <p>Set your dates and location, then compare cars by size, price, and features.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <i class="fas fa-sliders-h"></i>
+                <h3>Customize Your Ride</h3>
+                <p>Add child seats, extra driver, insurance, and more in a few taps.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <i class="fas fa-key"></i>
+                <h3>Pickup or Delivery</h3>
+                <p>Pick up at the airport desk or have the car delivered to your hotel.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <i class="fas fa-road"></i>
+                <h3>Drive & Return</h3>
+                <p>Return at the agreed spot — we'll handle the rest.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Locations Section -->
+<section class="locations-section" id="locations">
+    <div class="container">
+        <h2 class="section-title">We're where your flight lands.</h2>
+        <div class="locations-content">
+            <div class="locations-map">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800" alt="Map">
+            </div>
+            <div class="locations-list">
+                <div class="location-card">
+                    <i class="fas fa-plane-departure"></i>
+                    <div class="location-info">
+                        <h3>Dubai International Airport (DXB)</h3>
+                        <p>Terminal 1 & 3</p>
+                        <p class="location-hours">Open 24/7</p>
+                        <p class="location-contact">+971 4 XXX XXXX</p>
+                        <a href="#" class="location-link">See available cars →</a>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <i class="fas fa-city"></i>
+                    <div class="location-info">
+                        <h3>Abu Dhabi Downtown</h3>
+                        <p>City Center Branch</p>
+                        <p class="location-hours">Mon-Sun: 8:00 AM - 10:00 PM</p>
+                        <p class="location-contact">+971 2 XXX XXXX</p>
+                        <a href="#" class="location-link">See available cars →</a>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <i class="fas fa-plane-departure"></i>
+                    <div class="location-info">
+                        <h3>Manila – NAIA Terminal 3</h3>
+                        <p>International Terminal</p>
+                        <p class="location-hours">Open 24/7</p>
+                        <p class="location-contact">+63 2 XXX XXXX</p>
+                        <a href="#" class="location-link">See available cars →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Insurance & Protection Section -->
+<section class="insurance-section">
+    <div class="container">
+        <h2 class="section-title">Drive with confidence — no nasty surprises.</h2>
+        <div class="protection-grid">
+            <div class="protection-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Basic Coverage</h3>
+                <p>Included with every booking. Covers third-party liability with standard excess.</p>
+            </div>
+            <div class="protection-card">
+                <i class="fas fa-shield-virus"></i>
+                <h3>Full Protection</h3>
+                <p>Lower your excess and cover most damage and theft-related costs.</p>
+            </div>
+            <div class="protection-card">
+                <i class="fas fa-tools"></i>
+                <h3>Roadside Assistance</h3>
+                <p>24/7 breakdown support, flat tires, jump-starts, and more.</p>
+            </div>
+            <div class="protection-card">
+                <i class="fas fa-id-card"></i>
+                <h3>Young Driver Support</h3>
+                <p>Options available for drivers under standard age limits.</p>
+            </div>
+        </div>
+        <div class="faq-preview">
+            <h3>Common Questions</h3>
+            <div class="faq-item">
+                <strong>What happens if there's damage?</strong>
+                <p>With Full Protection, most damage is covered. Basic coverage includes third-party liability. Contact us immediately if any incident occurs.</p>
+            </div>
+            <div class="faq-item">
+                <strong>What is the deposit policy?</strong>
+                <p>A security deposit is required at pickup. The amount varies by car type and is fully refundable upon return if no damage is found.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title">Trusted by travelers and locals.</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-quote">"The car was waiting for us right at the airport. Clean, new, and exactly as described. Made our trip so much easier."</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Maria">
+                    <div>
+                        <strong>Maria</strong>
+                        <span>Business Traveler</span>
+                    </div>
+                </div>
+                <span class="testimonial-tag">Rented in Dubai</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-quote">"Last-minute booking for a family vacation. The SUV was perfect, and the customer service was outstanding throughout."</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pravatar.cc/150?img=33" alt="Ahmed">
+                    <div>
+                        <strong>Ahmed</strong>
+                        <span>Family Vacation</span>
+                    </div>
+                </div>
+                <span class="testimonial-tag">Last-minute airport booking</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-quote">"Transparent pricing, no surprises. The luxury car was in perfect condition. Will definitely book again."</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pravatar.cc/150?img=45" alt="Sarah">
+                    <div>
+                        <strong>Sarah</strong>
+                        <span>Corporate Travel</span>
+                    </div>
+                </div>
+                <span class="testimonial-tag">Corporate account</span>
+            </div>
+        </div>
+        <div class="trust-badges">
+            <span>Rated 4.9 ★ on TrustPilot</span>
+            <span>Over 10,000 days of rentals completed</span>
+        </div>
+    </div>
+</section>
+
+<!-- Membership Section -->
+<section class="membership-section" id="membership">
+    <div class="container">
+        <h2 class="section-title">For frequent drivers: membership that actually pays off.</h2>
+        <div class="membership-content">
+            <div class="membership-info">
+                <p>If you rent more than twice a year, PremiumRentals Membership can save you real money.</p>
+                <ul class="membership-benefits">
+                    <li><i class="fas fa-check"></i> 10–20% off selected cars</li>
+                    <li><i class="fas fa-check"></i> Priority upgrades when available</li>
+                    <li><i class="fas fa-check"></i> Faster pickup (less paperwork)</li>
+                    <li><i class="fas fa-check"></i> Early access to promos & free days</li>
+                </ul>
+            </div>
+            <div class="membership-tiers">
+                <div class="tier-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>Bronze</h3>
+                    <p>10% off • Priority support</p>
+                    <a href="#" class="tier-link">View details →</a>
+                </div>
+                <div class="tier-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>Silver</h3>
+                    <p>15% off • Free upgrades</p>
+                    <a href="#" class="tier-link">View details →</a>
+                </div>
+                <div class="tier-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>Gold</h3>
+                    <p>20% off • VIP treatment</p>
+                    <a href="#" class="tier-link">View details →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Business Section -->
+<section class="business-section" id="business">
+    <div class="container">
+        <h2 class="section-title">Need cars for your team or clients?</h2>
+        <p class="section-intro">We provide fleets for teams, events, and recurring business travel.</p>
+        <div class="business-cards">
+            <div class="business-card">
+                <h3>Corporate Accounts</h3>
+                <p>Consolidated billing, approved driver lists, dedicated support.</p>
+            </div>
+            <div class="business-card">
+                <h3>Long-Term Rentals</h3>
+                <p>Monthly rentals as an alternative to leases.</p>
+            </div>
+            <div class="business-card">
+                <h3>Events & VIP Transport</h3>
+                <p>Curated fleet for conferences, weddings, and delegations.</p>
+            </div>
+        </div>
+        <div class="business-cta">
+            <a href="#" class="btn-primary">Talk to our business team</a>
+        </div>
+    </div>
+</section>
+
+<!-- Mobile App Section -->
+<section class="mobile-app-section">
+    <div class="container">
+        <h2 class="section-title">Book, unlock, and manage your rentals from your phone.</h2>
+        <div class="app-content">
+            <div class="app-image">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400" alt="Mobile app">
+            </div>
+            <div class="app-features">
+                <ul>
+                    <li><i class="fas fa-check"></i> View all bookings in one place</li>
+                    <li><i class="fas fa-check"></i> Extend your rental in a tap</li>
+                    <li><i class="fas fa-check"></i> Instant support chat</li>
+                    <li><i class="fas fa-check"></i> Digital key access (coming soon)</li>
+                </ul>
+                <div class="app-buttons">
+                    <a href="#" class="app-store-btn">App Store</a>
+                    <a href="#" class="app-store-btn">Google Play</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section" id="faq">
+    <div class="container">
+        <h2 class="section-title">Questions before you book?</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What documents do I need to rent a car?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You'll need a valid driver's license (held for at least 1 year), a credit card in your name, and a form of ID (passport or national ID). International licenses are accepted in most locations.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is there a deposit?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, a security deposit is required at pickup. The amount varies by car type (typically $200-$500) and is fully refundable upon return if no damage or violations are found.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is the fuel policy?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We provide the car with a full tank. You can return it full (no charge) or we'll refuel it for you at market rates plus a small service fee.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I cross borders with the car?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Border crossing depends on the rental location and car type. Please inform us in advance, and we'll provide the necessary documentation and approval.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What happens if my flight is delayed?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Contact us immediately if your flight is delayed. We'll adjust your pickup time at no extra charge. For significant delays, we may need to reassign your vehicle, but we'll find you an equivalent replacement.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can someone else drive the car?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Additional drivers can be added for a small daily fee. They must meet the same age and license requirements and be present at pickup to sign the rental agreement.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What payment methods do you accept?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept all major credit cards (Visa, Mastercard, Amex) and debit cards. Corporate accounts can be set up with invoicing options.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does cancellation work?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Free cancellation up to 24 hours before pickup. Cancellations within 24 hours may incur a small fee. No-show charges apply if you don't show up without canceling.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="final-cta-section" id="contact">
+    <div class="container">
+        <h2 class="section-title">Ready to hit the road?</h2>
+        <div class="cta-content">
+            <div class="cta-left">
+                <p>Tell us your dates and destination, and we'll match you with the right car at the right price.</p>
+                <ul class="cta-bullets">
+                    <li><i class="fas fa-check"></i> Get a quote in under 5 minutes</li>
+                    <li><i class="fas fa-check"></i> No obligation, no spam</li>
+                    <li><i class="fas fa-check"></i> Expert recommendations</li>
+                </ul>
+            </div>
+            <div class="cta-right">
+                <form class="quote-form">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Phone" required>
+                    <input type="text" placeholder="Pickup city & date" required>
+                    <textarea placeholder="Notes (optional)"></textarea>
+                    <button type="submit" class="btn-primary">Request a Quote</button>
+                    <p class="form-reassurance">We usually reply within 2 hours. Your info stays private.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
+

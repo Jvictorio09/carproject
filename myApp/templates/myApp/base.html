@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Premium Car Rentals{% endblock %}</title>
+    
+    <!-- Blocking Script - Must be first to prevent flash -->
+    <script>
+        // Immediately check and redirect if needed - runs before page renders
+        (function() {
+            const loadingComplete = sessionStorage.getItem('loadingComplete');
+            const hasVisited = sessionStorage.getItem('hasVisited');
+            
+            // If loading hasn't started or isn't complete, redirect immediately
+            if (!loadingComplete && !hasVisited) {
+                window.location.replace('/loading/');
+            } else if (!loadingComplete) {
+                // If loading started but not complete, redirect to loading
+                const loadingStarted = sessionStorage.getItem('loadingStarted');
+                if (loadingStarted) {
+                    window.location.replace('/loading/');
+                } else {
+                    window.location.replace('/loading/');
+                }
+            }
+        })();
+    </script>
+    
+    <!-- Hide body immediately with inline CSS -->
+    <style>
+        body {
+            visibility: hidden;
+            opacity: 0;
+        }
+        body.loading-complete {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myApp/css/style.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="gradient-orb orb-4"></div>
+        <div class="gradient-orb orb-5"></div>
+        <div class="glow-overlay"></div>
+        <div class="particles-container">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+    
+    <!-- Micro-strip -->
+    <div class="micro-strip">
+        <div class="container">
+            <div class="micro-strip-content">
+                <span><i class="fas fa-check-circle"></i> 24/7 Support</span>
+                <span><i class="fas fa-check-circle"></i> Free cancellations up to 24h</span>
+                <span><i class="fas fa-check-circle"></i> No hidden fees</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header" id="mainHeader">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-left">
+                    <a href="/" class="logo">
+                        <i class="fas fa-car-side"></i>
+                        <span>PremiumRentals</span>
+                    </a>
+                </div>
+                <div class="nav-center">
+                    <a href="#fleet">Fleet</a>
+                    <a href="#locations">Locations</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#business">Business</a>
+                    <a href="#membership">Membership</a>
+                    <a href="#support">Support</a>
+                </div>
+                <div class="nav-right">
+                    <div class="language-selector">
+                        <button class="language-btn" id="languageBtn" aria-label="Select language">
+                            <i class="fas fa-globe"></i>
+                            <span id="currentLang">EN</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="language-dropdown" id="languageDropdown">
+                            <button class="lang-option active" data-lang="en">
+                                <span class="lang-flag">🇺🇸</span>
+                                <span class="lang-name">English</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="lang-option" data-lang="es">
+                                <span class="lang-flag">🇪🇸</span>
+                                <span class="lang-name">Español</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="lang-option" data-lang="fr">
+                                <span class="lang-flag">🇫🇷</span>
+                                <span class="lang-name">Français</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="lang-option" data-lang="ar">
+                                <span class="lang-flag">🇸🇦</span>
+                                <span class="lang-name">العربية</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="lang-option" data-lang="zh">
+                                <span class="lang-flag">🇨🇳</span>
+                                <span class="lang-name">中文</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="lang-option" data-lang="hi">
+                                <span class="lang-flag">🇮🇳</span>
+                                <span class="lang-name">हिन्दी</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="lang-option" data-lang="de">
+                                <span class="lang-flag">🇩🇪</span>
+                                <span class="lang-name">Deutsch</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="lang-option" data-lang="ja">
+                                <span class="lang-flag">🇯🇵</span>
+                                <span class="lang-name">日本語</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <a href="#signin" class="sign-in-link" data-translate="nav.signin">Sign In</a>
+                    <a href="#book" class="btn-primary" data-translate="nav.book">Book a Car</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+        <span class="back-to-top-text">Top</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-banner">
+            <div class="container">
+                <p>Need urgent help? Call our 24/7 hotline: <strong>+1 (555) 123-4567</strong></p>
+            </div>
+        </div>
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h3>PremiumRentals</h3>
+                        <p>Your trusted partner for premium car rentals. We deliver luxury, convenience, and peace of mind wherever your journey takes you.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#fleet">Fleet</a></li>
+                            <li><a href="#locations">Locations</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#business">Business</a></li>
+                            <li><a href="#membership">Membership</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#terms">Terms</a></li>
+                            <li><a href="#privacy">Privacy</a></li>
+                            <li><a href="#policies">Rental Policies</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 PremiumRentals. All rights reserved. | <a href="#terms">Terms</a> | <a href="#privacy">Privacy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-header-content">
+                    <div class="chatbot-avatar">
+                        <div class="animated-car-logo">
+                            <div class="car-body">
+                                <div class="car-window"></div>
+                                <div class="car-wheel wheel-front"></div>
+                                <div class="car-wheel wheel-back"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chatbot-info">
+                        <h3>Renz</h3>
+                        <span class="chatbot-status">Online</span>
+                    </div>
+                </div>
+                <button class="chatbot-minimize" id="chatbotMinimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Hello! 👋 I'm Renz, your car rental assistant! Ask me anything about our services. How can I help you today?</p>
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+            <div class="chatbot-input-container">
+                <div class="quick-questions">
+                    <button class="quick-question-btn" data-question="What documents do I need?">Documents needed</button>
+                    <button class="quick-question-btn" data-question="What is your cancellation policy?">Cancellation policy</button>
+                    <button class="quick-question-btn" data-question="Do you offer insurance?">Insurance options</button>
+                </div>
+                <div class="chatbot-input-wrapper">
+                    <input type="text" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
+                    <button id="chatbotSend" class="chatbot-send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle">
+            <div class="animated-car-logo-small">
+                <div class="car-body-small">
+                    <div class="car-window-small"></div>
+                    <div class="car-wheel-small wheel-front-small"></div>
+                    <div class="car-wheel-small wheel-back-small"></div>
+                </div>
+            </div>
+            <span class="chatbot-notification" id="chatbotNotification"></span>
+        </button>
+        <div class="floating-message" id="floatingMessage">
+            <span>Ask me anything!</span>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{% static 'myApp/js/main.js' %}"></script>
+    
+    <!-- Show body only if loading is complete -->
+    <script>
+        // Check if loading is complete - runs after DOM loads
+        (function() {
+            const loadingComplete = sessionStorage.getItem('loadingComplete');
+            const hasVisited = sessionStorage.getItem('hasVisited');
+            
+            // Only show body if loading is complete
+            if (loadingComplete || hasVisited) {
+                document.body.classList.add('loading-complete');
+                // Mark as visited
+                if (loadingComplete) {
+                    sessionStorage.setItem('hasVisited', 'true');
+                }
+            } else {
+                // Double check - if somehow we got here, redirect
+                window.location.replace('/loading/');
+            }
+        })();
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
+
+
